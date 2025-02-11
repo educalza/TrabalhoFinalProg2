@@ -79,7 +79,7 @@ public class ProducaoLeitePorVacaController {
         String mes = cbMes.getValue();
         String brinco = cbBrinco.getValue();
 
-        if (brinco == null || brinco.isBlank()) {
+        if (brinco.isBlank()) {
             mostrarAlerta(Alert.AlertType.WARNING, "AVISO", "Selecione alguma vaca.");
             return;
         }
@@ -89,7 +89,6 @@ public class ProducaoLeitePorVacaController {
             return;
         }
 
-        // Obtendo todas as produções cadastradas
         List<Producao> producoes = daoProducao.listarTodos();
 
         List<Producao> producoesFiltradas;
@@ -127,18 +126,11 @@ public class ProducaoLeitePorVacaController {
     @FXML
     private void carregarVacas(){
         List<Vaca> vacas = daoVaca.listarTodos();
-        ObservableList<String> brincos = FXCollections.observableArrayList();
-        
-        if(vacas.isEmpty()){
-            cbBrinco.setPromptText("Nenhuma vaca");
-            cbBrinco.setItems(FXCollections.observableArrayList()); // Limpa a lista
-        } else{
-            for(Vaca vaca : vacas){
-                brincos.add(vaca.getBrinco());
-            }
-            cbBrinco.setItems(brincos);
-            cbBrinco.setPromptText("Selecione uma vaca");    
+        ObservableList<String> logins = FXCollections.observableArrayList();
+        for(Vaca vaca : vacas){
+            logins.add(vaca.getBrinco());
         }
+        cbBrinco.setItems(logins);
     }
     
     private void atualizarTabela(List<Producao> producoes) {

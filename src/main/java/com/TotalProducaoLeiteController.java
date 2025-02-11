@@ -47,7 +47,7 @@ public class TotalProducaoLeiteController {
     
     @FXML
     private void initialize() {
-        System.out.println("Tela de Produção Total de Leite carregada!");
+        System.out.println("Tela de Producao Total de Leite carregada!");
         daoVaca = new Dao<>(Vaca.class);
         daoProducao = new Dao<>(Producao.class);
         listaProducao = FXCollections.observableArrayList();
@@ -60,7 +60,6 @@ public class TotalProducaoLeiteController {
 
         tabelaVacas.setItems(listaProducao);
 
-        // Preencher comboMeses com os meses
         carregarMeses();
     }
     
